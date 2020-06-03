@@ -41,8 +41,8 @@ grafana_server:
 # Variables correspond to ones in grafana.ini configuration file
 # Security
 grafana_security:
-  admin_user: admin
-  admin_password: ""
+  admin_user: "admin"
+  admin_password: "admin"
 #  secret_key: ""
 #  login_remember_days: 7
 #  cookie_username: grafana_user
@@ -53,16 +53,12 @@ grafana_security:
 # Database setup
 grafana_database:
   type: sqlite3
-#  host: 127.0.0.1:3306
-#  name: grafana
-#  user: root
-#  password: ""
-#  url: ""
-#  ssl_mode: disable
-#  path: grafana.db
-#  max_idle_conn: 2
-#  max_open_conn: ""
-#  log_queries: ""
+  name: grafana
+  ssl_mode: disable
+  path: grafana.db
+  max_idle_conn: 2
+  max_open_conn: 5
+  log_queries: true
 
 # Remote cache
 grafana_remote_cache: {}
@@ -196,16 +192,16 @@ grafana_plugins: []
 #  - raintank-worldping-app
 
 # Dashboards from https://grafana.com/dashboards
-grafana_dashboards: []
-#  - dashboard_id: '4271'
-#    revision_id: '3'
-#    datasource: 'Prometheus'
-#  - dashboard_id: '1860'
-#    revision_id: '4'
-#    datasource: 'Prometheus'
-#  - dashboard_id: '358'
-#    revision_id: '1'
-#    datasource: 'Prometheus'
+grafana_dashboards:
+  - dashboard_id: '4271'
+    revision_id: '3'
+    datasource: 'Prometheus'
+  - dashboard_id: '1860'
+    revision_id: '4'
+    datasource: 'Prometheus'
+  - dashboard_id: '358'
+    revision_id: '1'
+    datasource: 'Prometheus'
 
 grafana_dashboards_dir: "dashboards"
 
@@ -218,28 +214,28 @@ grafana_alert_notifications: []
 #       addresses: "example@example.com"
 
 # Datasources to configure
-grafana_datasources: []
-#  - name: "Prometheus"
-#    type: "prometheus"
-#    access: "proxy"
-#    url: "http://prometheus.mydomain"
-#    basicAuth: true
-#    basicAuthUser: "admin"
-#    basicAuthPassword: "password"
-#    isDefault: true
-#    jsonData:
-#      tlsAuth: false
-#      tlsAuthWithCACert: false
-#      tlsSkipVerify: true
+grafana_datasources:
+  - name: "Prometheus"
+    type: "prometheus"
+    access: "proxy"
+    url: "http://localhost:90"
+    basicAuth: true
+    basicAuthUser: "admin"
+    basicAuthPassword: "password"
+    isDefault: true
+    jsonData:
+      tlsAuth: false
+      tlsAuthWithCACert: false
+      tlsSkipVerify: true
 
 # API keys to configure
-grafana_api_keys: []
-#  - name: "admin"
-#    role: "Admin"
-#  - name: "viewer"
-#    role: "Viewer"
-#  - name: "editor"
-#    role: "Editor"
+grafana_api_keys:
+  - name: "admin"
+    role: "Admin"
+  - name: "viewer"
+    role: "Viewer"
+  - name: "editor"
+    role: "Editor"
 
 # The location where the keys should be stored.
 grafana_api_keys_dir: "{{ lookup('env', 'HOME') }}/grafana/keys"
