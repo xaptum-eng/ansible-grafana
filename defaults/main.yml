@@ -193,6 +193,9 @@ grafana_plugins: []
 
 # Dashboards from https://grafana.com/dashboards
 grafana_dashboards:
+  - dashboard_id: '11074'
+    revision_id: '1'
+    datasource: 'Prometheus'
   - dashboard_id: '4271'
     revision_id: '3'
     datasource: 'Prometheus'
